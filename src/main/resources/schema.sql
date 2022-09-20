@@ -1,0 +1,8 @@
+DROP TABLE IF EXISTS KEYWORD_VIEW;
+
+CREATE TABLE KEYWORD_VIEW(
+    keyword VARCHAR(255) NOT NULL,
+    views BIGINT,
+    PRIMARY KEY (keyword),
+    UNIQUE KEY (keyword)
+);

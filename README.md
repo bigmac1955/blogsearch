@@ -113,7 +113,10 @@ https://github.com/bigmac1955/blogsearch/blob/48a29cef6df90c9ae7cbcce4f1c3abfb4c
 이 경우 6379 포트를 열고있는 프로세스를 찾아 종료 후 다시 실행하면 정상 실행 됩니다.
 
 ex) 윈도우버전 예시
+
 netstat -ano | findstr 6379
-  TCP    127.0.0.1:6379         0.0.0.0:0              LISTENING       27424
+
+    TCP    127.0.0.1:6379         0.0.0.0:0              LISTENING       27424
+  
 taskkill /pid 27424 /f
 

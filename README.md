@@ -108,8 +108,10 @@ com.h2database:h2 : h2 DB 사용을 위해 사용
 https://github.com/bigmac1955/blogsearch/blob/48a29cef6df90c9ae7cbcce4f1c3abfb4cb9e837/BlogSearch-Server-0.0.1-SNAPSHOT.jar
 
 실행방법 : java -jar BlogSearch-Server-0.0.1-SNAPSHOT.jar
-*간혹 비정상적인 종료로 인해서 실행시 Redis Port (6379) 관련 에러가 발생할 수 있습니다.
+
+간혹 비정상적인 종료로 인해서 실행시 Redis Port (6379) 관련 에러가 발생할 수 있습니다.
 이 경우 6379 포트를 열고있는 프로세스를 찾아 종료 후 다시 실행하면 정상 실행 됩니다.
+
 ex) 윈도우버전 예시
 netstat -ano | findstr 6379
   TCP    127.0.0.1:6379         0.0.0.0:0              LISTENING       27424

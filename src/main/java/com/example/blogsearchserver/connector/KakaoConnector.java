@@ -12,13 +12,12 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Component;
 import org.springframework.util.LinkedMultiValueMap;
 import org.springframework.util.MultiValueMap;
-import org.springframework.web.reactive.function.client.WebClient;
 import org.springframework.web.reactive.function.client.WebClientResponseException;
 
 @Component
 @RequiredArgsConstructor
 @Slf4j
-public class KakaoConnector implements BlogConnector {
+public class KakaoConnector extends AbstractConnector implements BlogConnector {
 
     private static final String KAKAO_BASE_URL = "https://dapi.kakao.com";
     private static final String KAKAO_AUTH_KEY = "21b6ad7b93e4f8a72e1c9400db47636a";
@@ -45,7 +44,7 @@ public class KakaoConnector implements BlogConnector {
         queryParams.add("page", String.valueOf(requestDTO.getPage()));
         queryParams.add("size", String.valueOf(requestDTO.getSize()));
 
-        KakaoBlogResponse result = WebClient.create(KAKAO_BASE_URL)
+        KakaoBlogResponse result = getWebClient(KAKAO_BASE_URL)
                 .get()
                 .uri(uriBuilder -> uriBuilder.path(ServiceApiUriEnum.KAKAO_BLOG_SEARCH_URI.getUri()).queryParams(queryParams).build())
                 .header("Authorization", "KakaoAK " + KAKAO_AUTH_KEY)

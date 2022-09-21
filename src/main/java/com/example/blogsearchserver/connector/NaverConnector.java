@@ -8,14 +8,12 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Component;
 import org.springframework.util.LinkedMultiValueMap;
 import org.springframework.util.MultiValueMap;
-import org.springframework.web.reactive.function.client.WebClient;
 
-import java.text.SimpleDateFormat;
 import java.util.List;
 
 @Component
 @RequiredArgsConstructor
-public class NaverConnector implements BlogConnector{
+public class NaverConnector extends AbstractConnector implements BlogConnector{
 
     private static final String NAVER_BASE_URL = "https://openapi.naver.com";
     private static final String NAVER_CLIENT_ID = "sDggVURIDErMUOhU8oT5";
@@ -31,7 +29,7 @@ public class NaverConnector implements BlogConnector{
         queryParams.add("start", String.valueOf(requestDTO.getPage()));
         queryParams.add("display", String.valueOf(requestDTO.getSize()));
 
-        NaverBlogResponse result = WebClient.create(NAVER_BASE_URL)
+        NaverBlogResponse result = getWebClient(NAVER_BASE_URL)
                 .get()
                 .uri(uriBuilder -> uriBuilder.path(ServiceApiUriEnum.NAVER_BLOG_SEARCH_URI.getUri()).queryParams(queryParams).build())
                 .header("X-Naver-Client-Id", NAVER_CLIENT_ID)
@@ -47,10 +45,8 @@ public class NaverConnector implements BlogConnector{
         items.forEach(item -> item.setDatetime(changeDateTimeFormat(item.getDatetime())));
 
         // 페이지번호 * 표시갯수 > 전체갯수 이면 lastItem true 로 준다
-        boolean lastItem = false;
-        if(result.getStart() * result.getDisplay() > result.getTotal()){
-            lastItem = true;
-        }
+        boolean lastItem = result.getStart() * result.getDisplay() > result.getTotal();
+
         dto.setLastItem(lastItem);
         dto.setDocuments(items);
         dto.setPageSize(requestDTO.getSize());

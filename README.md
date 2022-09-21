@@ -105,7 +105,7 @@ com.h2database:h2 : h2 DB 사용을 위해 사용
 
 ***
 ### 다운로드 링크
-https://github.com/bigmac1955/blogsearch/blob/48a29cef6df90c9ae7cbcce4f1c3abfb4cb9e837/BlogSearch-Server-0.0.1-SNAPSHOT.jar
+https://github.com/bigmac1955/blogsearch/blob/710fa6f36622c3f39393e7b548bb6d27198c181c/BlogSearch-Server-0.0.1-SNAPSHOT.jar
 
 실행방법 : java -jar BlogSearch-Server-0.0.1-SNAPSHOT.jar
 
